@@ -68,6 +68,11 @@ class Team implements ParticipantInterface
     private $users;
 
     /**
+     * @ORM\OneToOne(targetEntity="Lan\ProfileBundle\Entity\User", mappedBy="personalTeam")
+     **/
+    private $personalUser;
+
+    /**
      * @ORM\OneToMany(targetEntity="Lan\TournamentBundle\Entity\Score", mappedBy="team")
      **/
     private $scores;
@@ -253,5 +258,160 @@ class Team implements ParticipantInterface
     public function getTeamDraws()
     {
         return $this->teamDraws;
+    }
+
+    /**
+     * Add tournaments
+     *
+     * @param \Lan\TournamentBundle\Entity\Tournament $tournaments
+     * @return Team
+     */
+    public function addTournament(\Lan\TournamentBundle\Entity\Tournament $tournaments)
+    {
+        $this->tournaments[] = $tournaments;
+
+        return $this;
+    }
+
+    /**
+     * Remove tournaments
+     *
+     * @param \Lan\TournamentBundle\Entity\Tournament $tournaments
+     */
+    public function removeTournament(\Lan\TournamentBundle\Entity\Tournament $tournaments)
+    {
+        $this->tournaments->removeElement($tournaments);
+    }
+
+    /**
+     * Get tournaments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTournaments()
+    {
+        return $this->tournaments;
+    }
+
+    /**
+     * Add rounds
+     *
+     * @param \Lan\TournamentBundle\Entity\Round $rounds
+     * @return Team
+     */
+    public function addRound(\Lan\TournamentBundle\Entity\Round $rounds)
+    {
+        $this->rounds[] = $rounds;
+
+        return $this;
+    }
+
+    /**
+     * Remove rounds
+     *
+     * @param \Lan\TournamentBundle\Entity\Round $rounds
+     */
+    public function removeRound(\Lan\TournamentBundle\Entity\Round $rounds)
+    {
+        $this->rounds->removeElement($rounds);
+    }
+
+    /**
+     * Get rounds
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRounds()
+    {
+        return $this->rounds;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \Lan\ProfileBundle\Entity\User $users
+     * @return Team
+     */
+    public function addUser(\Lan\ProfileBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \Lan\ProfileBundle\Entity\User $users
+     */
+    public function removeUser(\Lan\ProfileBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Set personalUser
+     *
+     * @param \Lan\ProfileBundle\Entity\User $personalUser
+     * @return Team
+     */
+    public function setPersonalUser(\Lan\ProfileBundle\Entity\User $personalUser = null)
+    {
+        $this->personalUser = $personalUser;
+
+        return $this;
+    }
+
+    /**
+     * Get personalUser
+     *
+     * @return \Lan\ProfileBundle\Entity\User 
+     */
+    public function getPersonalUser()
+    {
+        return $this->personalUser;
+    }
+
+    /**
+     * Add scores
+     *
+     * @param \Lan\TournamentBundle\Entity\Score $scores
+     * @return Team
+     */
+    public function addScore(\Lan\TournamentBundle\Entity\Score $scores)
+    {
+        $this->scores[] = $scores;
+
+        return $this;
+    }
+
+    /**
+     * Remove scores
+     *
+     * @param \Lan\TournamentBundle\Entity\Score $scores
+     */
+    public function removeScore(\Lan\TournamentBundle\Entity\Score $scores)
+    {
+        $this->scores->removeElement($scores);
+    }
+
+    /**
+     * Get scores
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getScores()
+    {
+        return $this->scores;
     }
 }

@@ -29,13 +29,7 @@ class Score
     private $score;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Lan\ProfileBundle\Entity\User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     **/
-    private $user;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Lan\TournamentBundle\Entity\Team")
+     * @ORM\ManyToOne(targetEntity="Lan\TournamentBundle\Entity\Team",inversedBy="scores")
      * @ORM\JoinColumn(name="team_id", referencedColumnName="id")
      **/
     private $team;
@@ -77,5 +71,51 @@ class Score
     public function getScore()
     {
         return $this->score;
+    }
+
+    /**
+     * Set team
+     *
+     * @param \Lan\TournamentBundle\Entity\Team $team
+     * @return Score
+     */
+    public function setTeam(\Lan\TournamentBundle\Entity\Team $team = null)
+    {
+        $this->team = $team;
+
+        return $this;
+    }
+
+    /**
+     * Get team
+     *
+     * @return \Lan\TournamentBundle\Entity\Team 
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
+
+    /**
+     * Set round
+     *
+     * @param \Lan\TournamentBundle\Entity\Round $round
+     * @return Score
+     */
+    public function setRound(\Lan\TournamentBundle\Entity\Round $round = null)
+    {
+        $this->round = $round;
+
+        return $this;
+    }
+
+    /**
+     * Get round
+     *
+     * @return \Lan\TournamentBundle\Entity\Round 
+     */
+    public function getRound()
+    {
+        return $this->round;
     }
 }

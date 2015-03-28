@@ -6,6 +6,9 @@
     <title>Luna Atra Network</title>
 
     {% stylesheets 
+      
+      'bundles/lancore/css/bootstrap.min.css'
+      'bundles/lancore/css/bootstrap-theme.min.css'
 
        filter='less, cssrewrite'
       output="Resources/css/all.css"
@@ -14,6 +17,7 @@
     {% endstylesheets %}
 
     {% javascripts
+      '@LanCoreBundle/Resources/public/js/bootstrap.min.js'
        %}
       <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -22,12 +26,14 @@
 <body>
 
 {% block header %}
+{% include "LanCoreBundle::header.html.twig" %}
 {% endblock header %}
 
 {% block main %}
 {% endblock main %}
 
 {% block footer %}
+{% include "LanCoreBundle::footer.html.twig" %}
 {% endblock footer %}
 
 

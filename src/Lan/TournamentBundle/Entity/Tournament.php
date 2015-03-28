@@ -64,22 +64,16 @@ class Tournament
     private $rounds;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Lan\ProfileBundle\Entity\User", inversedBy="tournaments")
+     * @ORM\ManyToMany(targetEntity="Lan\TournamentBundle\Entity\Team", inversedBy="tournaments")
      * @ORM\JoinTable(name="participants_tournaments")
      **/
     private $participants;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Lan\TournamentBundle\Entity\Team", inversedBy="tournaments")
-     * @ORM\JoinTable(name="teamParticipants_tournaments")
-     **/
-    private $teamParticipants;
 
 
     public function __construct()
     {
         $this->participants = new ArrayCollection();
-        $this->teamParticipants = new ArrayCollection();
         $this->rounds = new ArrayCollection();
         $this->dateCreation = new \DateTime("now");
         $this->type = 0;
@@ -186,5 +180,94 @@ class Tournament
     public function getDateUpdate()
     {
         return $this->dateUpdate;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return Tournament
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Add rounds
+     *
+     * @param \Lan\TournamentBundle\Entity\Round $rounds
+     * @return Tournament
+     */
+    public function addRound(\Lan\TournamentBundle\Entity\Round $rounds)
+    {
+        $this->rounds[] = $rounds;
+
+        return $this;
+    }
+
+    /**
+     * Remove rounds
+     *
+     * @param \Lan\TournamentBundle\Entity\Round $rounds
+     */
+    public function removeRound(\Lan\TournamentBundle\Entity\Round $rounds)
+    {
+        $this->rounds->removeElement($rounds);
+    }
+
+    /**
+     * Get rounds
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRounds()
+    {
+        return $this->rounds;
+    }
+
+    /**
+     * Add participants
+     *
+     * @param \Lan\TournamentBundle\Entity\Team $participants
+     * @return Tournament
+     */
+    public function addParticipant(\Lan\TournamentBundle\Entity\Team $participants)
+    {
+        $this->participants[] = $participants;
+
+        return $this;
+    }
+
+    /**
+     * Remove participants
+     *
+     * @param \Lan\TournamentBundle\Entity\Team $participants
+     */
+    public function removeParticipant(\Lan\TournamentBundle\Entity\Team $participants)
+    {
+        $this->participants->removeElement($participants);
+    }
+
+    /**
+     * Get participants
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getParticipants()
+    {
+        return $this->participants;
     }
 }
