@@ -86,7 +86,7 @@ class User extends BaseUser implements ParticipantInterface
      * @ORM\OneToOne(targetEntity="Lan\TournamentBundle\Entity\Team", inversedBy="personalUser")
      * @ORM\JoinColumn(name="personnal_team_id", referencedColumnName="id")
      **/
-    private $personnalTeam;
+    private $personalTeam;
 
 
     /**
@@ -94,10 +94,6 @@ class User extends BaseUser implements ParticipantInterface
      **/
     private $rounds;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Lan\TournamentBundle\Entity\Score", mappedBy="user")
-     **/
-    private $scores;
 
     public function __construct()
     {
@@ -438,5 +434,28 @@ class User extends BaseUser implements ParticipantInterface
     public function getScores()
     {
         return $this->scores;
+    }
+
+    /**
+     * Set personalTeam
+     *
+     * @param \Lan\TournamentBundle\Entity\Team $personalTeam
+     * @return User
+     */
+    public function setPersonalTeam(\Lan\TournamentBundle\Entity\Team $personalTeam = null)
+    {
+        $this->personalTeam = $personalTeam;
+
+        return $this;
+    }
+
+    /**
+     * Get personalTeam
+     *
+     * @return \Lan\TournamentBundle\Entity\Team 
+     */
+    public function getPersonalTeam()
+    {
+        return $this->personalTeam;
     }
 }

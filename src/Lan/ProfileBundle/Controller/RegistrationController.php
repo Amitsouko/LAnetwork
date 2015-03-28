@@ -151,8 +151,9 @@ class RegistrationController extends Controller
     {
         $personalTeam = new Team();
         $personalTeam->setPersonalUser($user);
-
+        $user->setPersonalTeam($personalTeam);
         $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
         $em->persist($personalTeam);
         $em->flush();
     }
