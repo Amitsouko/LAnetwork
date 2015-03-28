@@ -1,3 +1,8 @@
+lan_tournament:
+    resource: "@LanTournamentBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 lan_profile:
     resource: "@LanProfileBundle/Controller/"
     type:     annotation

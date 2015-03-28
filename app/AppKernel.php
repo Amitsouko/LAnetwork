@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Lan\CoreBundle\LanCoreBundle(),
             new Lan\ProfileBundle\LanProfileBundle(),
+            new Lan\TournamentBundle\LanTournamentBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
