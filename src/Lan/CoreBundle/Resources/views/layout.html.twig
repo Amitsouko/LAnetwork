@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Luna Atra Network</title>
+
+    {% stylesheets 
+
+       filter='less, cssrewrite'
+      output="Resources/css/all.css"
+    %}
+      <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+
+    {% javascripts
+       %}
+      <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+</head>
+
+<body>
+
+{% block header %}
+{% endblock header %}
+
+{% block main %}
+{% endblock main %}
+
+{% block footer %}
+{% endblock footer %}
+
+
+</body>
+</html>
