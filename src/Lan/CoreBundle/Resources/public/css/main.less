@@ -1,4 +1,44 @@
 @import "./var.less";
 
+@banniereHeight: 450px;
+
 body{
+    background: white;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
+
+#big-picture{
+    height: @banniereHeight;
+    background:black url("../images/banniere.jpg") center   100% ;
+}
+
+.banniere-image .image{
+    background-image: url("../images/banniere.jpg");
+}
+
+#trophy-home{
+    height: @banniereHeight;
+    float:left;
+    background-image: url("../images/trophy.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#punchline{
+    display: table;
+    color: white;
+    font-size:2em;
+    text-align: center;
+    text-shadow: 0px 0px 3px black;
+    height: @banniereHeight;
+    div {
+        display: table-cell;
+        vertical-align: middle;
+
+        a.btn {
+            font-size: 0.65em; 
+        }
+    }
+}
+
