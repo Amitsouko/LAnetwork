@@ -90,10 +90,7 @@ class User extends BaseUser implements ParticipantInterface
     private $personalTeam;
 
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Lan\TournamentBundle\Entity\Round", mappedBy="winner")
-     **/
-    private $rounds;
+
 
 
     public function __construct()

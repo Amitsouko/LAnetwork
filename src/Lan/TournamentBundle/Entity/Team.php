@@ -52,12 +52,12 @@ class Team implements ParticipantInterface
     private $draws;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Lan\TournamentBundle\Entity\Tournament", mappedBy="teamParticipants")
+     * @ORM\ManyToMany(targetEntity="Lan\TournamentBundle\Entity\Tournament", mappedBy="participants")
      **/
     private $tournaments;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Lan\TournamentBundle\Entity\Round", mappedBy="rounds")
+     * @ORM\OneToMany(targetEntity="Lan\TournamentBundle\Entity\Round", mappedBy="winner")
      **/
     private $rounds;
 
