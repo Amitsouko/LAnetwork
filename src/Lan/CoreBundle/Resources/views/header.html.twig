@@ -1,5 +1,21 @@
 <header>
-<div id="header-container">
-test s
-</div>
+    <section id="header-container">
+        <div class="container">
+            <div class="row">
+                <a id="logo" href="{{ path("lan_core_default_index") }}">
+                    {# logo #}
+                </a>      
+                {% if app.user %}
+                <div id="header-profil-div" class="pull-right">
+                    <a href="{{ path("fos_user_profile_show") }}">{{ app.user.username }}</a>
+                </div>
+                {% else %}
+                <div id="header-login-div" class="pull-right">
+                    <a href="{{ path("fos_user_security_login") }}">Login</a>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>      
+    </section>
 </header>

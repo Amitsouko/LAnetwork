@@ -17,27 +17,16 @@
     {% endstylesheets %}
 
     {# custom #}
-    {# DO NOT FORGET TO PUT ALL LESS FILS IN THE PROD.LESS FOR PROD #}
-    {% if app.environment == "dev"  %}
-    {% stylesheets 
-        'bundles/lancore/css/main.less'
-        'bundles/lancore/css/header.less'
-         filter='less, cssrewrite'
-        output="Resources/css/dev.css"
-    %}
-    <link href="{{ asset_url }}" rel="stylesheet" media="screen" />        
-    {% endstylesheets %}
-
-    {% else %}
 
     {% stylesheets 
-            'bundles/lancore/css/prod.less'
+            'bundles/lancore/css/main.less'
+            'bundles/lancore/css/header.less'
              filter='less, cssrewrite'
             output="Resources/css/prod.css"
     %}
     <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
     {% endstylesheets %}
-    {% endif %}
+
 
 
     {# JAVASCRIPT PART #}

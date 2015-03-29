@@ -1,4 +1,41 @@
+@import "./var.less";
+
+@headerHeight: 40px;
 #header-container{
-    background: red;
-    height: 40px;
+    color: white;
+    height: @headerHeight;
+    background-color: @midnightBlue;
+    .row > div{
+        vertical-align: middle;
+        height: @headerHeight;
+        line-height: 40px;
+    }
+}
+
+#header-login-div, #header-profil-div{
+    text-align: right; 
+
+    > a{
+        .whiteLink();
+        color: white;
+        display: block; 
+        height: @headerHeight;
+        padding:0px 15px;
+        &:hover{
+            background-color: @wetAlphast;
+        }
+    }
+}
+
+#logo{
+    display: block;
+    float: left;    
+    height: @headerHeight;
+    width: 100px;   
+    background: url("../images/luna-atra-little-white.png") center center no-repeat;
+    background-size: 73%;
+
+    &:hover{
+        background-color: @wetAlphast;
+    }
 }
