@@ -5,6 +5,7 @@ namespace Lan\ProfileBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Lan\TournamentBundle\Model\ParticipantInterface;
+use \Doctrine\Common\Collections\ArrayCollection;
 /**
  * User
  * @ORM\Table(name="fos_user")
@@ -104,9 +105,9 @@ class User extends BaseUser implements ParticipantInterface
         $this->teamDraws = 0;
         $this->teamDefeats = 0;
         $this->teamVictories = 0;
-        $this->tournaments = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->rounds = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->scores = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tournaments = new ArrayCollection();
+        $this->rounds = new ArrayCollection();
+        $this->scores = new ArrayCollection();
     }
 
 
