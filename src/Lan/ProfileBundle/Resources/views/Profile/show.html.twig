@@ -1,0 +1,40 @@
+{% extends "LanCoreBundle::layout.html.twig" %}
+
+{% block main %}
+<div class="profile">
+    {# header part #}
+    <div class="blurred-image profile-image">
+        <div class="image"></div>
+        <div id="" class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="big-picture-profile">
+                       <div class="filter">
+                       </div>
+                       <div class="header-profile">
+                            <img id="profile-pic" src="{{ asset("public/images/charisson0.jpg") }}">
+                            <h1>{{ app.user.username }}</h1>
+                       </div>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </div>
+    {# end header part #}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="whiteBox">
+                Date d'inscription : {{ app.user.dateCreation|date }}
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    </div>
+</div>
+
+{#{% include "FOSUserBundle:Profile:show_content.html.twig" %} #}
+{% endblock main %}

@@ -31,6 +31,13 @@ class User extends BaseUser implements ParticipantInterface
     private $picture;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="dateCreation", type="datetime")
+     */
+    private $dateCreation;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="victories", type="integer")
@@ -455,5 +462,28 @@ class User extends BaseUser implements ParticipantInterface
     public function getPersonalTeam()
     {
         return $this->personalTeam;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     * @return User
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->dateCreation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreation()
+    {
+        return $this->dateCreation;
     }
 }

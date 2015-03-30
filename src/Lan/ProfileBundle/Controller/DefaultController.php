@@ -9,11 +9,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
+     * @Route("/user/{username}")
      * @Template()
      */
-    public function indexAction($name)
+    public function indexAction($username)
     {
-        return array('name' => $name);
+        $em = $this->getDoctrine();
+        $user = $em->getRepository("LanProfileBundle:User")->findOneByUsername($username);
+        return array('user' => $user);
     }
 }

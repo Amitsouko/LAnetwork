@@ -58,7 +58,7 @@ class RegistrationController extends Controller
         if ($form->isValid()) {
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
-
+            $user->setDateCreation(new \Datetime("now"));
             $userManager->updateUser($user);
             $this->postUserCreation($user);
 

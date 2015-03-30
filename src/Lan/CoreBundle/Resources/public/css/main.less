@@ -3,7 +3,7 @@
 @banniereHeight: 450px;
 
 body{
-    background: white;
+    background: whiteSmoke ;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
@@ -15,6 +15,14 @@ body{
 .banniere-image .image{
     background-image: url("../images/banniere.jpg");
 }
+
+
+.whiteBox{
+    background-color: white;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    padding:15px;
+}
+
 
 #trophy-home{
     height: @banniereHeight;
@@ -37,8 +45,66 @@ body{
         vertical-align: middle;
 
         a.btn {
-            font-size: 0.65em; 
+            font-size: 0.65em;
+            width: 190px;
+
         }
     }
 }
 
+@profileBannerHeight : 200px;
+
+.profile{
+    .profile-image{
+        margin-bottom: 30px;
+        .image{
+            background-image: url("../images/test-banner.jpg");
+        }
+    }
+    #big-picture-profile{
+        position: relative;
+        height: @profileBannerHeight;
+        background-image: url("../images/test-banner.jpg");
+        background-position: center center;
+        .filter{
+            z-index: 0;
+            width: 100%;   
+            height: 100%;
+            background: -moz-linear-gradient(top,  rgba(0,0,0,0) 29%, rgba(0,0,0,0.81) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(29%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.81))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 29%,rgba(0,0,0,0.81) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  rgba(0,0,0,0) 29%,rgba(0,0,0,0.81) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  rgba(0,0,0,0) 29%,rgba(0,0,0,0.81) 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  rgba(0,0,0,0) 29%,rgba(0,0,0,0.81) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cf000000',GradientType=0 ); /* IE6-9 */
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        .header-profile{
+            position: relative;
+            z-index: 1;
+            color: white;
+            position: absolute;
+            bottom: 0px;
+            h1 {
+                display: inline-block;
+                vertical-align: bottom;
+                font-weight: normal;
+                font-size: 2.3em;
+                margin-bottom: 10px;
+                text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            }
+        }
+    }
+}
+
+#profile-pic{
+    height: 150px;
+    width: 150px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    display: inline-block;
+    margin: 15px;
+    position: relative;
+    bottom: -30px;
+}

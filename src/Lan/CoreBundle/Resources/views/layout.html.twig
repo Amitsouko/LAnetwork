@@ -22,6 +22,7 @@
     {% stylesheets 
             'bundles/lancore/css/main.less'
             'bundles/lancore/css/header.less'
+            'bundles/lancore/css/queries.less'
              filter='less, cssrewrite'
             output="Resources/css/prod.css"
     %}
@@ -31,11 +32,21 @@
 
 
     {# JAVASCRIPT PART #}
+    {% if app.environment == "dev" %}
     {% javascripts
+        '@LanCoreBundle/Resources/public/js/jquery-1.11.2.js'
+        '@LanCoreBundle/Resources/public/js/bootstrap.js'
+     %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    {% else %}
+    {% javascripts
+        '@LanCoreBundle/Resources/public/js/jquery-1.11.2.min.js'
         '@LanCoreBundle/Resources/public/js/bootstrap.min.js'
      %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
+    {% endif %}
 
     {% block topjs %}
     {% endblock topjs %}

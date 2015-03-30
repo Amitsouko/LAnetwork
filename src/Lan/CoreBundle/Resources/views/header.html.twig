@@ -6,12 +6,27 @@
                     {# logo #}
                 </a>      
                 {% if app.user %}
-                <div id="header-profil-div" class="pull-right">
-                    <a href="{{ path("fos_user_profile_show") }}">{{ app.user.username }}</a>
+                <div id="header-profil-div" class="pull-right dropdown">
+                    <a href="#"  data-toggle="dropdown" aria-expanded="true">{{ app.user.username }}</a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="header-profil-div">
+                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-list-alt"></span> Dashboard</a></li>
+                       <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path("fos_user_profile_show") }}"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-cog"></span> Paramètres</a></li>
+                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="empty-icon"></span> Something else here</a></li>
+                       <li role="presentation" class="divider"></li>
+                       <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path("fos_user_security_logout") }}"><span class="left-icon glyphicon glyphicon-log-out"></span> Déconnexion</a></li>
+                     </ul>
                 </div>
                 {% else %}
-                <div id="header-login-div" class="pull-right">
-                    <a href="{{ path("fos_user_security_login") }}">Login</a>
+                <div id="header-login-div" class="pull-right dropdown">
+                    <a href="#"  data-toggle="dropdown" aria-expanded="true">Login</a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="header-login-div">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                      </ul>
                 </div>
                 {% endif %}
 

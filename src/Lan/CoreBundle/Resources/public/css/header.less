@@ -21,10 +21,17 @@
         display: block; 
         height: @headerHeight;
         padding:0px 15px;
-        &:hover{
+        &:hover, &:active,&:focus{
+            text-decoration: none;
             background-color: @wetAlphast;
         }
     }
+}
+
+.empty-icon{
+    height: 1em;
+    display: inline-block;
+    width: 1em;
 }
 
 #logo{
@@ -38,4 +45,8 @@
     &:hover{
         background-color: @wetAlphast;
     }
+}
+
+.dropdown-menu>li>a{
+    padding: 5px 20px 5px 11px;
 }
