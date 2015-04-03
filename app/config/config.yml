@@ -80,3 +80,22 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Lan\ProfileBundle\Entity\User
+    profile:
+        form:
+            type: custom_profile
+            
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+
+    filter_sets:
+        cache: ~
+        my_thumb:
+            quality: 75
+            filters:
+                thumbnail: { size: [120, 90], mode: outbound }
+        profile_banner:
+            quality: 75
+            filters:
+                thumbnail: { size: [1140, 200], mode: outbound }

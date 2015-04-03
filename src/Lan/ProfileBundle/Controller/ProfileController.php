@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FOS\UserBundle\Controller;
+namespace Lan\ProfileBundle\Controller;
 
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
@@ -38,9 +38,7 @@ class ProfileController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        return $this->render('FOSUserBundle:Profile:show.html.twig', array(
-            'user' => $user
-        ));
+        return new RedirectResponse($this->generateUrl('profile',array("username"=>$user->getUsername())));
     }
 
     /**

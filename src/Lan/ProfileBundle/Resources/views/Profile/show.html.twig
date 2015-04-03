@@ -4,11 +4,11 @@
 <div class="profile">
     {# header part #}
     <div class="blurred-image profile-image">
-        <div class="image"></div>
+        <div class="image" style="background-image: url('{{ user.WebPath| imagine_filter('profile_banner')}}');"></div>
         <div id="" class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div id="big-picture-profile">
+                    <div id="big-picture-profile" style="background-image: url('{{ user.WebPath| imagine_filter('profile_banner')}}');">
                        <div class="filter">
                        </div>
                        <div class="header-profile">
@@ -26,7 +26,9 @@
     <div class="row">
         <div class="col-md-3">
             <div class="whiteBox">
-                Date d'inscription : {{ app.user.dateCreation|date }}
+{{ user.WebPath| imagine_filter('profile_banner') }}
+                Date d'inscription : {{ app.user.dateCreation|date }}<br/>
+                Dernière connexion : {{ app.user.lastLogin|date }}<br/>
             </div>
         </div>
     </div>

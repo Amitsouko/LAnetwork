@@ -9,13 +9,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/user/{username}")
-     * @Template()
+     * @Route("/user/{username}", name="profile")
+     * @Template("LanProfileBundle:Profile:Show.html.twig")
      */
     public function indexAction($username)
     {
         $em = $this->getDoctrine();
-        $user = $em->getRepository("LanProfileBundle:User")->findOneByUsername($username);
+        $user =  $em->getRepository("LanProfileBundle:User")->findOneByUsername($username);
         return array('user' => $user);
     }
 }

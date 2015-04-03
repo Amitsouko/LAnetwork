@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Lan\CoreBundle\LanCoreBundle(),
             new Lan\ProfileBundle\LanProfileBundle(),
             new Lan\TournamentBundle\LanTournamentBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

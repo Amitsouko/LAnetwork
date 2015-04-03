@@ -10,7 +10,7 @@
                     <a href="#"  data-toggle="dropdown" aria-expanded="true">{{ app.user.username }}</a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="header-profil-div">
                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-list-alt"></span> Dashboard</a></li>
-                       <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path("fos_user_profile_show") }}"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+                       <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ path("profile",{ username: app.user.username }) }}"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-cog"></span> Paramètres</a></li>
                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="empty-icon"></span> Something else here</a></li>
                        <li role="presentation" class="divider"></li>
