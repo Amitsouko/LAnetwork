@@ -15,6 +15,10 @@
     visibility: hidden;
 }
 
+.block{
+    display: block !important;
+}
+
 body{
     background: whiteSmoke ;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -31,6 +35,10 @@ body{
 
 .text-center{
     text-align: center !important;
+}
+
+.text-right{
+    text-align: right !important;
 }
 
 .whiteBox{
@@ -135,11 +143,19 @@ form{
     input[type="password"],
     input[type="email"],
     input[type="date"],
-    input[type="number"]{
+    input[type="number"],
+    textarea{
         width: 100%;
         padding: 10px;
         border-radius: 3px;
         border: 1px rgb(224, 224, 224) solid;
         box-shadow: 3px 3px 5px whiteSmoke inset;
     }
+    textarea{
+        min-height: 200px;
+        max-height: 1000px;
+        max-width: 100%;
+        min-width: 100%;
+    }
+
 }

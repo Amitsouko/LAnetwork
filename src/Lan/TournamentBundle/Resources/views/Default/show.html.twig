@@ -1,0 +1,42 @@
+{% extends "LanCoreBundle::layout.html.twig" %}
+
+{% block main %}
+<div class="register">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-push-2 col-md-push-3 col-sm-8 col-md-6">
+            <h1>{{ tournament.name }}</h1>
+            <div class="whiteBox">
+            <p>
+                {{ tournament.description }}
+            </p>
+            <ul>
+                <li><strong>Type de jeu</strong> : {{ tournament.typeFormatted }}</li>
+                <li><strong>date de création</strong> : {{ tournament.dateCreation|date }}</li>
+                <li><strong>État de l'inscription</strong> : {{ tournament.inscription ? "Ouverte" : "Fermée" }}</li>
+            </ul>
+
+
+            {# INSCRIPTION PART #}
+            {% if tournament.inscription %}
+
+                {% if not app.user %}
+                    <span>Connectez-vous pour vous inscrire au tournoi</span>
+                {% elseif app.user.personalTeam in tournament.participants  %}
+                    <span>Vous êtes inscrit à ce tournoi - <a href="{{ path("lan_tournament_default_unsubscribe", {id:tournament.id}) }}">se désinscrire</a></span>
+                {% else %}
+                    <a href="{{ path("lan_tournament_default_subscribe", {id:tournament.id}) }}">S'inscrire à l'event</a>
+                {% endif %}
+
+            {% else %}
+                <span>Les inscriptions sont closes</span>
+            {% endif %}
+
+            {# END INSCRIPTION PART #}
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock main %}

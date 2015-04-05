@@ -9,7 +9,9 @@
         <h1>Édition du de la couverture</h1>
         <div class="whiteBox">
             <a href="{{ path("fos_user_profile_edit") }}">Éditer son profil</a><br/><br/>
-            
+            <p>
+                Taille recommandée : 1140x200
+            </p>
             <form action="{{ path('editCover') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit_cover">
                 {{ form_errors(form.file) }}
                 <div class="form-group">

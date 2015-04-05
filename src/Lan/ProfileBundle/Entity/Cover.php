@@ -24,7 +24,7 @@ class Cover
     private $id;
 
     /**
-     * @Assert\File(    maxSize="6M",
+     * @Assert\File(    maxSize="2M",
      *                  mimeTypes = {"image/jpeg", "image/png", "image/gif", "image/jpg"},
      *                  mimeTypesMessage = "Ce fichier doit être une image")
      * )
@@ -193,5 +193,28 @@ class Cover
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set hash
+     *
+     * @param string $hash
+     * @return Cover
+     */
+    public function setHash($hash)
+    {
+        $this->hash = $hash;
+
+        return $this;
+    }
+
+    /**
+     * Get hash
+     *
+     * @return string 
+     */
+    public function getHash()
+    {
+        return $this->hash;
     }
 }

@@ -57,6 +57,12 @@ class Tournament
      */
     private $dateUpdate;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="inscription", type="boolean")
+     */
+    private $inscription;
 
     /**
      * @ORM\OneToMany(targetEntity="Round", mappedBy="tournament")
@@ -69,16 +75,28 @@ class Tournament
      **/
     private $participants;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Lan\ProfileBundle\Entity\User", inversedBy="tournMod")
+     * @ORM\JoinTable(name="mods_tournaments")
+     **/
+    private $moderators;
 
 
     public function __construct()
     {
         $this->participants = new ArrayCollection();
+        $this->moderators = new ArrayCollection();
         $this->rounds = new ArrayCollection();
         $this->dateCreation = new \DateTime("now");
         $this->type = 0;
+        $this->inscription = true;
     } 
 
+    public function getTypeFormatted()
+    {   
+        $array = array(0 => "Joueur vs joueur", 1 => "par équipe", 2 => "mixte");
+        return $array[$this->type];
+    }
 
     /**
      * Get id
@@ -269,5 +287,61 @@ class Tournament
     public function getParticipants()
     {
         return $this->participants;
+    }
+
+    /**
+     * Add moderators
+     *
+     * @param \Lan\ProfileBundle\Entity\User $moderators
+     * @return Tournament
+     */
+    public function addModerator(\Lan\ProfileBundle\Entity\User $moderators)
+    {
+        $this->moderators[] = $moderators;
+
+        return $this;
+    }
+
+    /**
+     * Remove moderators
+     *
+     * @param \Lan\ProfileBundle\Entity\User $moderators
+     */
+    public function removeModerator(\Lan\ProfileBundle\Entity\User $moderators)
+    {
+        $this->moderators->removeElement($moderators);
+    }
+
+    /**
+     * Get moderators
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getModerators()
+    {
+        return $this->moderators;
+    }
+
+    /**
+     * Set inscription
+     *
+     * @param boolean $inscription
+     * @return Tournament
+     */
+    public function setInscription($inscription)
+    {
+        $this->inscription = $inscription;
+
+        return $this;
+    }
+
+    /**
+     * Get inscription
+     *
+     * @return boolean 
+     */
+    public function getInscription()
+    {
+        return $this->inscription;
     }
 }

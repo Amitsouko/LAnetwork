@@ -94,6 +94,11 @@ class User extends BaseUser implements ParticipantInterface
     private $tournaments;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Lan\TournamentBundle\Entity\Tournament", mappedBy="moderators")
+     **/
+    private $tournMod;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Lan\TournamentBundle\Entity\Team", mappedBy="users")
      **/
     private $teams;
@@ -106,7 +111,7 @@ class User extends BaseUser implements ParticipantInterface
 
 
     /**
-     * @Assert\File(maxSize="6000000")
+     * @Assert\File(maxSize="2M")
      */
     public $file;
     
@@ -130,6 +135,7 @@ class User extends BaseUser implements ParticipantInterface
         $this->teamDraws = 0;
         $this->teamDefeats = 0;
         $this->teamVictories = 0;
+        $this->tournMod = new ArrayCollection();
         $this->tournaments = new ArrayCollection();
         $this->rounds = new ArrayCollection();
         $this->scores = new ArrayCollection();
@@ -640,5 +646,38 @@ class User extends BaseUser implements ParticipantInterface
     public function getCover()
     {
         return $this->cover;
+    }
+
+    /**
+     * Add tournMod
+     *
+     * @param \Lan\TournamentBundle\Entity\Tournament $tournMod
+     * @return User
+     */
+    public function addTournMod(\Lan\TournamentBundle\Entity\Tournament $tournMod)
+    {
+        $this->tournMod[] = $tournMod;
+
+        return $this;
+    }
+
+    /**
+     * Remove tournMod
+     *
+     * @param \Lan\TournamentBundle\Entity\Tournament $tournMod
+     */
+    public function removeTournMod(\Lan\TournamentBundle\Entity\Tournament $tournMod)
+    {
+        $this->tournMod->removeElement($tournMod);
+    }
+
+    /**
+     * Get tournMod
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTournMod()
+    {
+        return $this->tournMod;
     }
 }
