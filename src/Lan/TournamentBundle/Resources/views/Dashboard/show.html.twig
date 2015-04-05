@@ -1,0 +1,57 @@
+{% extends "LanCoreBundle::layout.html.twig" %}
+
+{% block main %}
+<div class="register">
+<div class="container">
+    <div class="row">
+            <h1 class="col-sm-12" >Tournoi : {{ tournament.name }}</h1>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="whiteBox">
+                <h2>Statut</h2>
+                <ul>
+                    <li><strong>Type de jeu</strong> : {{ tournament.typeFormatted }}</li>
+                    <li><strong>date de création</strong> : {{ tournament.dateCreation|date }}</li>
+                    <li><strong>État de l'inscription</strong> : {{ tournament.inscription ? "Ouverte" : "Fermée" }}</li>
+                </ul>
+            </div>
+
+            <div class="whiteBox">
+                <h2>Modérateurs</h2>
+                <ul>
+                    {% for mod in tournament.moderators %}
+                    <li><a href="{{ path("profile", {username:mod.username}) }}">{{ mod.username }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="whiteBox">
+                <h2>Actions</h2>
+                <ul>
+                {% if tournament.rounds|length == 0 %}
+                    {% if tournament.inscription %}
+                        <li><a href="{{ path("lan_tournament_dashboard_closeinscription", {id:tournament.id}) }}">Fermer les inscriptions</a></li>
+                    {% else %}
+                        <li><a href="{{ path("lan_tournament_dashboard_openinscription", {id:tournament.id}) }}">Ouvrir les inscriptions</a></li>
+                    {% endif %}
+                {% endif %}
+                    <li><a href="">Créer le tournoi aléatoirement</a></li>
+                </ul>
+            </div>
+        </div>  
+
+        <div class="col-sm-8">
+            <h2>Inscrits</h2>
+            <ul>
+                {% for part in tournament.participants %}
+                <li><a href="{{ path("profile", {username:part.personalUser.username}) }}">{{ part.personalUser.username }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</div>
+{% endblock main %}
