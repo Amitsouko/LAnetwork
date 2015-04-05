@@ -23,11 +23,10 @@
                 <div id="header-login-div" class="pull-right dropdown">
                     <a href="#"  data-toggle="dropdown" aria-expanded="true">Login</a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="header-login-div">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                        <li role="presentation" class="embed-login">
+                            {% render path("embed-login") %}
+                        </li>
+                      
                       </ul>
                 </div>
                 {% endif %}

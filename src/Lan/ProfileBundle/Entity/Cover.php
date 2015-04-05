@@ -24,7 +24,10 @@ class Cover
     private $id;
 
     /**
-     * @Assert\File(maxSize="6000000")
+     * @Assert\File(    maxSize="6M",
+     *                  mimeTypes = {"image/jpeg", "image/png", "image/gif", "image/jpg"},
+     *                  mimeTypesMessage = "Ce fichier doit être une image")
+     * )
      */
     public $file;
     

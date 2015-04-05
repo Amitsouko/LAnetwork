@@ -85,6 +85,7 @@ fos_user:
             type: custom_profile
 
 liip_imagine:
+    driver:               gd
     resolvers:
        default:
           web_path: ~

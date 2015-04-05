@@ -1,11 +1,22 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
-
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if app.session is not empty %}
-        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
-        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
-    {% endif %}
-{% endblock fos_user_content %}
+{% extends "LanCoreBundle::layout.html.twig" %}
+
+{% block main %}
+<div class="confirmed">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-push-2 col-md-push-3 col-sm-8 col-md-6">
+            <div class="whiteBox">
+                <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+                {% if app.session is not empty %}
+                    {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+                    {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>{% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock main %}

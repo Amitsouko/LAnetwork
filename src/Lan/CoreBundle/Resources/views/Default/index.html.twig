@@ -2,7 +2,7 @@
 
 {% block main %}
 
-<div class="blurred-image banniere-image">
+<div class="blurred-image banniere-image no-margin-header">
 <div class="image"></div>
     <div id="" class="container">
         <div class="row">
@@ -18,7 +18,7 @@
                             </p>
                             <p>
                                 <a href="" class="btn btn-empty big-btn btn-flat">Découvrir</a> 
-                                <a href="" class="btn btn-success big-btn btn-flat">Créer un compte</a>
+                                <a href="{{ path("fos_user_registration_register") }}" class="btn btn-success big-btn btn-flat">Créer un compte</a>
                             </p>
                         </div>
                     </div>

@@ -36,6 +36,8 @@
     {% javascripts
         '@LanCoreBundle/Resources/public/js/jquery-1.11.2.js'
         '@LanCoreBundle/Resources/public/js/bootstrap.js'
+        '@LanCoreBundle/Resources/public/js/notify.min.js'
+        '@LanCoreBundle/Resources/public/js/main.js'
      %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -43,6 +45,8 @@
     {% javascripts
         '@LanCoreBundle/Resources/public/js/jquery-1.11.2.min.js'
         '@LanCoreBundle/Resources/public/js/bootstrap.min.js'
+        '@LanCoreBundle/Resources/public/js/notify.min.js'
+        '@LanCoreBundle/Resources/public/js/main.js'
      %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -65,6 +69,7 @@
 {% include "LanCoreBundle::footer.html.twig" %}
 {% endblock footer %}
 
+{% include "LanCoreBundle::notification.html.twig" %}
 {% block bottomjs %}
 {% endblock bottomjs %}
 

@@ -1,5 +1,25 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "LanCoreBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block main %}
+<div class="register">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-push-2 col-md-push-3 col-sm-8 col-md-6">
+            <h1>Créer un compte</h1>
+            <div class="whiteBox">
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Resetting:reset_content.html.twig" %}
-{% endblock fos_user_content %}
+
+                <form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset">
+                    {{ form_widget(form) }}
+                    <div>
+                        <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock main %}
