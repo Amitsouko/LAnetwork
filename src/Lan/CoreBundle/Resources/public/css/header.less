@@ -9,6 +9,7 @@
         vertical-align: middle;
         height: @headerHeight;
         line-height: 40px;
+        
     }
 }
 
@@ -18,9 +19,13 @@
     > a{
         .whiteLink();
         color: white;
-        display: block; 
+        display: inline-block; 
         height: @headerHeight;
-        padding:0px 15px;
+        padding:0px 15px; 
+        img{
+            margin-left: 10px;
+            margin-top: -2px;
+        }
         &:hover, &:active,&:focus{
             text-decoration: none;
             background-color: @wetAlphast;

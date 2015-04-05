@@ -1,0 +1,38 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends "LanCoreBundle::layout.html.twig" %}
+
+{% block main %}
+<div class="edit-profile">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-push-2 col-md-push-3 col-sm-8 col-md-6">
+        <h1>Édition du de la couverture</h1>
+        <div class="whiteBox">
+            <a href="{{ path("fos_user_profile_edit") }}">Éditer son profil</a><br/><br/>
+            
+            <form action="{{ path('editCover') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit_cover">
+                <div class="form-group">
+                        {{ form_label(form.file) }}
+                        {{ form_widget(form.file) }}
+                </div>
+               <div class="hidden">
+                {{ form_widget(form) }}
+                 
+               </div>
+                <div class="">
+                    <a class="btn" href="{{ path("fos_user_profile_show") }}">Annuler</a>
+                    <input class="btn btn-success btn-flat" type="submit" value="{{ 'profile.edit.submit'|trans }}" /> 
+                </div>
+            </form>
+
+        </div>
+            
+        </div>
+    </div>
+    
+</div>
+
+
+</div>
+
+{% endblock main %}

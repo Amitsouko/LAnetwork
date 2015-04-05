@@ -22,7 +22,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use FOS\UserBundle\Model\UserInterface;
 use Lan\TournamentBundle\Entity\Team;
-
+use Lan\ProfileBundle\Entity\Cover;
 /**
  * Controller managing the registration
  *
@@ -153,7 +153,12 @@ class RegistrationController extends Controller
         $personalTeam->setPersonalUser($user);
         $user->setPersonalTeam($personalTeam);
         $em = $this->getDoctrine()->getManager();
+
+        $cover = new Cover();
+        $cover->setUser($user);
+        $user->setCover($cover);
         $em->persist($user);
+        $em->persist($cover);
         $em->persist($personalTeam);
         $em->flush();
     }

@@ -83,7 +83,7 @@ fos_user:
     profile:
         form:
             type: custom_profile
-            
+
 liip_imagine:
     resolvers:
        default:
@@ -96,6 +96,14 @@ liip_imagine:
             filters:
                 thumbnail: { size: [120, 90], mode: outbound }
         profile_banner:
-            quality: 75
+            quality: 90
             filters:
                 thumbnail: { size: [1140, 200], mode: outbound }
+        profile_pic:
+            quality: 90
+            filters:
+                thumbnail: { size: [150, 150], mode: outbound }
+        profile_pic_mini:
+            quality: 90
+            filters:
+                thumbnail: { size: [32, 32], mode: outbound }

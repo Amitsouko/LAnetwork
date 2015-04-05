@@ -109,7 +109,16 @@ class User extends BaseUser implements ParticipantInterface
      * @Assert\File(maxSize="6000000")
      */
     public $file;
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $path;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Lan\ProfileBundle\Entity\Cover", mappedBy="user")
+     **/
+    private $cover;
 
 
     public function __construct()
@@ -125,10 +134,6 @@ class User extends BaseUser implements ParticipantInterface
         $this->rounds = new ArrayCollection();
         $this->scores = new ArrayCollection();
     }
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    public $path;
 
     public function getAbsolutePath()
     {
@@ -137,7 +142,7 @@ class User extends BaseUser implements ParticipantInterface
 
     public function getWebPath()
     {
-        return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
+        return null === $this->path ? "/public/images/charisson".substr($this->id, -1).".jpg" : $this->getUploadDir().'/'.$this->path;
     }
 
     protected function getUploadRootDir()
@@ -612,5 +617,28 @@ class User extends BaseUser implements ParticipantInterface
     public function getLastImageUpdate()
     {
         return $this->lastImageUpdate;
+    }
+
+    /**
+     * Set cover
+     *
+     * @param \Lan\ProfileBundle\Entity\Cover $cover
+     * @return User
+     */
+    public function setCover(\Lan\ProfileBundle\Entity\Cover $cover = null)
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    /**
+     * Get cover
+     *
+     * @return \Lan\ProfileBundle\Entity\Cover 
+     */
+    public function getCover()
+    {
+        return $this->cover;
     }
 }

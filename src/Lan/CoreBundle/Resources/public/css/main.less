@@ -2,6 +2,11 @@
 
 @banniereHeight: 450px;
 
+.edit-profile{
+    margin-top: 20px;
+}
+
+
 body{
     background: whiteSmoke ;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -16,6 +21,9 @@ body{
     background-image: url("../images/banniere.jpg");
 }
 
+.text-center{
+    text-align: center !important;
+}
 
 .whiteBox{
     background-color: white;
@@ -94,10 +102,15 @@ body{
                 font-size: 2.3em;
                 margin-bottom: 10px;
                 text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+                a:link,a:visited,a:active,a:hover{
+                    color: white;
+                    font-size: 0.5em;
+                }
             }
         }
     }
 }
+
 
 #profile-pic{
     height: 150px;
@@ -107,4 +120,18 @@ body{
     margin: 15px;
     position: relative;
     bottom: -30px;
+}
+
+form{
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="date"],
+    input[type="number"]{
+        width: 100%;
+        padding: 10px;
+        border-radius: 3px;
+        border: 1px rgb(224, 224, 224) solid;
+        box-shadow: 3px 3px 5px whiteSmoke inset;
+    }
 }

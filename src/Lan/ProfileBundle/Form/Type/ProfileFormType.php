@@ -23,7 +23,8 @@ class ProfileFormType extends AbstractType
     {
         // add your custom field
         $builder->add('file')
-        ->add("lastImageUpdate", "date",array("data" => new \DateTime("now"), "attr" => array("class" => "hidden") ));
+        ->remove("current_password")
+        ->add("lastImageUpdate", "datetime",array("data" => new \DateTime("now"), "attr" => array("class" => "hidden") ));
     }
 
     public function getName()

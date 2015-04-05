@@ -1,5 +1,23 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "LanCoreBundle::layout.html.twig" %}
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block main %}
+<div class="edit-profile">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-push-2 col-md-push-3 col-sm-8 col-md-6">
+        <h1>Édition du profil</h1>
+        <div class="whiteBox">
+            <a href="{{ path("editCover") }}">Changer son image de couverture</a><br/><br/>
+            
+            {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+        </div>
+            
+        </div>
+    </div>
+    
+</div>
+
+
+</div>
+
+{% endblock main %}
