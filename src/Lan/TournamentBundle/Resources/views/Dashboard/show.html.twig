@@ -1,7 +1,7 @@
 {% extends "LanCoreBundle::layout.html.twig" %}
 
 {% block main %}
-<div class="register">
+<div class="tournament">
 <div class="container">
     <div class="row">
             <h1 class="col-sm-12" >Tournoi : {{ tournament.name }}</h1>
@@ -36,7 +36,7 @@
                         <li><a href="{{ path("lan_tournament_dashboard_openinscription", {id:tournament.id}) }}">Ouvrir les inscriptions</a></li>
                     {% endif %}
                 {% endif %}
-                    <li><a href="">Créer le tournoi aléatoirement</a></li>
+                    <li><a href="">générer le tournoi</a></li>
                 </ul>
             </div>
         </div>  

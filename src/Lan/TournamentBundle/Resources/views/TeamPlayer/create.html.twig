@@ -1,0 +1,34 @@
+{% extends "LanCoreBundle::layout.html.twig" %}
+
+{% block main %}
+<div class="register">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-push-2 col-md-push-3 col-sm-8 col-md-6">
+            <h1>Créer une équipe</h1>
+            <div class="whiteBox">
+
+
+            <form action="{{ path('lan_tournament_teamplayer_create') }}" {{ form_enctype(form) }} method="POST" class="lan_tournament_create_create">
+                <div class="form-group">
+                        {{ form_label(form.name) }}
+                        {{ form_widget(form.name) }}
+                </div>
+               <div class="hidden">
+                {{ form_widget(form) }}
+                 
+               </div>
+                <div class="">
+                    <a class="btn" href="{{ path("fos_user_profile_show") }}">Annuler</a>
+                    <input class="btn btn-success btn-flat" type="submit" value="Créer l'équipe" /> 
+                </div>
+            </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock main %}

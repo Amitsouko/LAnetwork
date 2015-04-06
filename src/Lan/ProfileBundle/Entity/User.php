@@ -99,9 +99,19 @@ class User extends BaseUser implements ParticipantInterface
     private $tournMod;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Lan\TournamentBundle\Entity\TeamPlayer", mappedBy="moderators")
+     **/
+    private $teamMod;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Lan\TournamentBundle\Entity\Team", mappedBy="users")
      **/
     private $teams;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Lan\TournamentBundle\Entity\TeamPlayer", mappedBy="users")
+     **/
+    private $teamPlayer;
 
     /**
      * @ORM\OneToOne(targetEntity="Lan\TournamentBundle\Entity\Team", inversedBy="personalUser")
@@ -136,6 +146,7 @@ class User extends BaseUser implements ParticipantInterface
         $this->teamDefeats = 0;
         $this->teamVictories = 0;
         $this->tournMod = new ArrayCollection();
+        $this->teamMod = new ArrayCollection();
         $this->tournaments = new ArrayCollection();
         $this->rounds = new ArrayCollection();
         $this->scores = new ArrayCollection();
@@ -679,5 +690,71 @@ class User extends BaseUser implements ParticipantInterface
     public function getTournMod()
     {
         return $this->tournMod;
+    }
+
+    /**
+     * Add teamPlayer
+     *
+     * @param \Lan\TournamentBundle\Entity\TeamPlayer $teamPlayer
+     * @return User
+     */
+    public function addTeamPlayer(\Lan\TournamentBundle\Entity\TeamPlayer $teamPlayer)
+    {
+        $this->teamPlayer[] = $teamPlayer;
+
+        return $this;
+    }
+
+    /**
+     * Remove teamPlayer
+     *
+     * @param \Lan\TournamentBundle\Entity\TeamPlayer $teamPlayer
+     */
+    public function removeTeamPlayer(\Lan\TournamentBundle\Entity\TeamPlayer $teamPlayer)
+    {
+        $this->teamPlayer->removeElement($teamPlayer);
+    }
+
+    /**
+     * Get teamPlayer
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTeamPlayer()
+    {
+        return $this->teamPlayer;
+    }
+
+    /**
+     * Add teamMod
+     *
+     * @param \Lan\TournamentBundle\Entity\TeamPlayer $teamMod
+     * @return User
+     */
+    public function addTeamMod(\Lan\TournamentBundle\Entity\TeamPlayer $teamMod)
+    {
+        $this->teamMod[] = $teamMod;
+
+        return $this;
+    }
+
+    /**
+     * Remove teamMod
+     *
+     * @param \Lan\TournamentBundle\Entity\TeamPlayer $teamMod
+     */
+    public function removeTeamMod(\Lan\TournamentBundle\Entity\TeamPlayer $teamMod)
+    {
+        $this->teamMod->removeElement($teamMod);
+    }
+
+    /**
+     * Get teamMod
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTeamMod()
+    {
+        return $this->teamMod;
     }
 }

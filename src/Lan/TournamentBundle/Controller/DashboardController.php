@@ -85,4 +85,19 @@ class DashboardController extends Controller
         }
     }
 
+    /**
+     * @Route("/{id}/generate")
+     * @Template()
+     */
+    public function generateAction($id)
+    {
+        $this->init($id);
+
+        $this->tournament->setInscription(false);
+        $this->em->persist($this->tournament);
+        $this->em->flush();
+
+        return array("tournamen" => $this->tournament);
+    }
+
 }

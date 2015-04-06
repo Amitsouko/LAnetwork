@@ -1,0 +1,44 @@
+{% extends "LanCoreBundle::layout.html.twig" %}
+
+{% block main %}
+<div class="tournament-generate">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-push-2 col-md-push-3 col-sm-8 col-md-6">
+            <h1>Générer le tournoi</h1>
+            <div class="whiteBox">
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock main %}
+
+
+
+
+{% block bottomjs %}
+
+{% javascripts
+    '@LanCoreBundle/Resources/public/js/jquery-ui.min.js'
+ %}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock bottomjs %}
+
+{% block topcss %}
+
+{% stylesheets 
+        'bundles/lancore/css/jquery-ui.min.css'
+        'bundles/lancore/css/jquery-ui.structure.min.css'
+        'bundles/lancore/css/jquery-ui.theme.min.css'
+         filter='cssrewrite'
+        output="Resources/css/prod.css"
+%}
+<link href="{{ asset_url }}" rel="stylesheet" media="screen" />
+{% endstylesheets %}
+
+{% endblock topcss %}

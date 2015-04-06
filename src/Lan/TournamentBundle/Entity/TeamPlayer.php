@@ -3,16 +3,15 @@
 namespace Lan\TournamentBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Lan\TournamentBundle\Model\ParticipantInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Team
+ * TeamPlayer
  *
  * @ORM\Table()
  * @ORM\Entity
  */
-class Team implements ParticipantInterface
+class TeamPlayer
 {
     /**
      * @var integer
@@ -22,6 +21,17 @@ class Team implements ParticipantInterface
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @var string
@@ -57,20 +67,15 @@ class Team implements ParticipantInterface
     private $tournaments;
 
     /**
-     * @ORM\OneToMany(targetEntity="Lan\TournamentBundle\Entity\Round", mappedBy="winner")
+     * @ORM\OneToMany(targetEntity="Lan\TournamentBundle\Entity\Team", mappedBy="parentTeam")
      **/
-    private $rounds;
+    private $shotTeams;
 
     /**
      * @ORM\ManyToMany(targetEntity="Lan\ProfileBundle\Entity\User", inversedBy="teams")
-     * @ORM\JoinTable(name="users_teams")
+     * @ORM\JoinTable(name="users_teamPlayer")
      **/
     private $users;
-
-    /**
-     * @ORM\OneToOne(targetEntity="Lan\ProfileBundle\Entity\User", mappedBy="personalTeam")
-     **/
-    private $personalUser;
 
     /**
      * @ORM\OneToMany(targetEntity="Lan\TournamentBundle\Entity\Score", mappedBy="team")
@@ -78,38 +83,27 @@ class Team implements ParticipantInterface
     private $scores;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TeamPlayer", inversedBy="rounds")
-     * @ORM\JoinColumn(name="team_player_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="Lan\ProfileBundle\Entity\User", inversedBy="teamMod")
+     * @ORM\JoinTable(name="teamPlayer_userMod")
      **/
-    private $parentTeam;
-
+    private $moderators;
 
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->moderators = new ArrayCollection();
         $this->tournaments = new ArrayCollection();
-        $this->rounds = new ArrayCollection();
+        $this->shotTeams = new ArrayCollection();
         $this->draws = 0;
         $this->defeats = 0;
         $this->victories = 0;
-    }
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
      * Set name
      *
      * @param string $name
-     * @return Team
+     * @return TeamPlayer
      */
     public function setName($name)
     {
@@ -132,7 +126,7 @@ class Team implements ParticipantInterface
      * Set victories
      *
      * @param integer $victories
-     * @return Team
+     * @return TeamPlayer
      */
     public function setVictories($victories)
     {
@@ -154,8 +148,8 @@ class Team implements ParticipantInterface
     /**
      * Set defeats
      *
-     * @param string $defeats
-     * @return Team
+     * @param integer $defeats
+     * @return TeamPlayer
      */
     public function setDefeats($defeats)
     {
@@ -167,7 +161,7 @@ class Team implements ParticipantInterface
     /**
      * Get defeats
      *
-     * @return string 
+     * @return integer 
      */
     public function getDefeats()
     {
@@ -178,7 +172,7 @@ class Team implements ParticipantInterface
      * Set draws
      *
      * @param integer $draws
-     * @return Team
+     * @return TeamPlayer
      */
     public function setDraws($draws)
     {
@@ -198,79 +192,10 @@ class Team implements ParticipantInterface
     }
 
     /**
-     * Set teamVictories
-     *
-     * @param integer $teamVictories
-     * @return Team
-     */
-    public function setTeamVictories($teamVictories)
-    {
-        $this->teamVictories = $teamVictories;
-
-        return $this;
-    }
-
-    /**
-     * Get teamVictories
-     *
-     * @return integer 
-     */
-    public function getTeamVictories()
-    {
-        return $this->teamVictories;
-    }
-
-    /**
-     * Set teamDefeats
-     *
-     * @param integer $teamDefeats
-     * @return Team
-     */
-    public function setTeamDefeats($teamDefeats)
-    {
-        $this->teamDefeats = $teamDefeats;
-
-        return $this;
-    }
-
-    /**
-     * Get teamDefeats
-     *
-     * @return integer 
-     */
-    public function getTeamDefeats()
-    {
-        return $this->teamDefeats;
-    }
-
-    /**
-     * Set teamDraws
-     *
-     * @param integer $teamDraws
-     * @return Team
-     */
-    public function setTeamDraws($teamDraws)
-    {
-        $this->teamDraws = $teamDraws;
-
-        return $this;
-    }
-
-    /**
-     * Get teamDraws
-     *
-     * @return integer 
-     */
-    public function getTeamDraws()
-    {
-        return $this->teamDraws;
-    }
-
-    /**
      * Add tournaments
      *
      * @param \Lan\TournamentBundle\Entity\Tournament $tournaments
-     * @return Team
+     * @return TeamPlayer
      */
     public function addTournament(\Lan\TournamentBundle\Entity\Tournament $tournaments)
     {
@@ -300,43 +225,43 @@ class Team implements ParticipantInterface
     }
 
     /**
-     * Add rounds
+     * Add shotTeams
      *
-     * @param \Lan\TournamentBundle\Entity\Round $rounds
-     * @return Team
+     * @param \Lan\TournamentBundle\Entity\Team $shotTeams
+     * @return TeamPlayer
      */
-    public function addRound(\Lan\TournamentBundle\Entity\Round $rounds)
+    public function addShotTeam(\Lan\TournamentBundle\Entity\Team $shotTeams)
     {
-        $this->rounds[] = $rounds;
+        $this->shotTeams[] = $shotTeams;
 
         return $this;
     }
 
     /**
-     * Remove rounds
+     * Remove shotTeams
      *
-     * @param \Lan\TournamentBundle\Entity\Round $rounds
+     * @param \Lan\TournamentBundle\Entity\Team $shotTeams
      */
-    public function removeRound(\Lan\TournamentBundle\Entity\Round $rounds)
+    public function removeShotTeam(\Lan\TournamentBundle\Entity\Team $shotTeams)
     {
-        $this->rounds->removeElement($rounds);
+        $this->shotTeams->removeElement($shotTeams);
     }
 
     /**
-     * Get rounds
+     * Get shotTeams
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getRounds()
+    public function getShotTeams()
     {
-        return $this->rounds;
+        return $this->shotTeams;
     }
 
     /**
      * Add users
      *
      * @param \Lan\ProfileBundle\Entity\User $users
-     * @return Team
+     * @return TeamPlayer
      */
     public function addUser(\Lan\ProfileBundle\Entity\User $users)
     {
@@ -369,7 +294,7 @@ class Team implements ParticipantInterface
      * Set personalUser
      *
      * @param \Lan\ProfileBundle\Entity\User $personalUser
-     * @return Team
+     * @return TeamPlayer
      */
     public function setPersonalUser(\Lan\ProfileBundle\Entity\User $personalUser = null)
     {
@@ -392,7 +317,7 @@ class Team implements ParticipantInterface
      * Add scores
      *
      * @param \Lan\TournamentBundle\Entity\Score $scores
-     * @return Team
+     * @return TeamPlayer
      */
     public function addScore(\Lan\TournamentBundle\Entity\Score $scores)
     {
@@ -422,25 +347,35 @@ class Team implements ParticipantInterface
     }
 
     /**
-     * Set parentTeam
+     * Add moderators
      *
-     * @param \Lan\TournamentBundle\Entity\TeamPlayer $parentTeam
-     * @return Team
+     * @param \Lan\ProfileBundle\Entity\User $moderators
+     * @return TeamPlayer
      */
-    public function setParentTeam(\Lan\TournamentBundle\Entity\TeamPlayer $parentTeam = null)
+    public function addModerator(\Lan\ProfileBundle\Entity\User $moderators)
     {
-        $this->parentTeam = $parentTeam;
+        $this->moderators[] = $moderators;
 
         return $this;
     }
 
     /**
-     * Get parentTeam
+     * Remove moderators
      *
-     * @return \Lan\TournamentBundle\Entity\TeamPlayer 
+     * @param \Lan\ProfileBundle\Entity\User $moderators
      */
-    public function getParentTeam()
+    public function removeModerator(\Lan\ProfileBundle\Entity\User $moderators)
     {
-        return $this->parentTeam;
+        $this->moderators->removeElement($moderators);
+    }
+
+    /**
+     * Get moderators
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getModerators()
+    {
+        return $this->moderators;
     }
 }

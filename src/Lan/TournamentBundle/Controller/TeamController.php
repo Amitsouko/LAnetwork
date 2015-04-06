@@ -1,5 +1,5 @@
 <?php
-
+// This team is a copy of TeamPlayer, to keep a shot of the current team for a tournament
 namespace Lan\TournamentBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
