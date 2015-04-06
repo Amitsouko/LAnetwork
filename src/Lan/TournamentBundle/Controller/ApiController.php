@@ -22,8 +22,9 @@ class ApiController extends Controller
     public function getUsersAction($id)
     {
        $em = $this->getDoctrine()->getEntityManager();
+       $response = new JsonResponse();
        $tournament =  $em->getRepository("LanTournamentBundle:Tournament")->findOneById($id);
-       if(!$tournament) throw $this->createNotFoundException('Le tournoi n\'existe pas');
+       if(!$tournament) return $response->setData(array("error" => "Tournament does not exist"));
         $serializer = $this->getSerializer();
        $arrayResponse = array();
 
@@ -45,8 +46,8 @@ class ApiController extends Controller
            $arrayResponse[] = $user;
        }
 
-       $response = new JsonResponse();
-       return $response->setData($arrayResponse);
+
+       return $response->setData(array("success" => true,"data" => $arrayResponse));
     }
 
     /**
@@ -56,8 +57,9 @@ class ApiController extends Controller
     public function getTeamsAction($id)
     {
        $em = $this->getDoctrine()->getEntityManager();
+       $response = new JsonResponse();
        $tournament =  $em->getRepository("LanTournamentBundle:Tournament")->findOneById($id);
-       if(!$tournament) throw $this->createNotFoundException('Le tournoi n\'existe pas');
+       if(!$tournament) return $response->setData(array("error" => "Tournament does not exist"));
         $serializer = $this->getSerializer();
        $arrayResponse = array();
 
@@ -85,8 +87,8 @@ class ApiController extends Controller
            $arrayResponse[] = $team;
        }
 
-       $response = new JsonResponse();
-       return $response->setData($arrayResponse);
+       
+       return $response->setData(array("success" => true,"data" => $arrayResponse));
     }
 
 
