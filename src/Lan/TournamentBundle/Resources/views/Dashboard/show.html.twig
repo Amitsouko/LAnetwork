@@ -45,7 +45,7 @@
             <h2>Inscrits</h2>
             <ul>
                 {% for part in tournament.participants %}
-                <li><a href="{{ path("profile", {username:part.personalUser.username}) }}">{{ part.personalUser.username }}</a></li>
+                <li>{{  part.users|length > 0  ?  part.name :part.personalUser.username  }}</li>
                 {% endfor %}
             </ul>
         </div>

@@ -19,7 +19,7 @@ class ApiController extends Controller
      * @Route("/{id}/users")
      * @Template()
      */
-    public function getAction($id)
+    public function getUsersAction($id)
     {
        $em = $this->getDoctrine()->getEntityManager();
        $tournament =  $em->getRepository("LanTournamentBundle:Tournament")->findOneById($id);
@@ -48,6 +48,47 @@ class ApiController extends Controller
        $response = new JsonResponse();
        return $response->setData($arrayResponse);
     }
+
+    /**
+     * @Route("/{id}/teams")
+     * @Template()
+     */
+    public function getTeamsAction($id)
+    {
+       $em = $this->getDoctrine()->getEntityManager();
+       $tournament =  $em->getRepository("LanTournamentBundle:Tournament")->findOneById($id);
+       if(!$tournament) throw $this->createNotFoundException('Le tournoi n\'existe pas');
+        $serializer = $this->getSerializer();
+       $arrayResponse = array();
+
+       foreach($tournament->getParticipants() as $p)
+       {
+           if($u = $p->getPersonalUser())
+           {
+            $team["id"] = $u->getId();
+            $team["name"] = $u->getUsername();
+            $team["url"] = $this->generateUrl('profile', array("username" => $u->getUsername()));
+           }else{
+
+              $team["id"] = $p->getId();
+              $team["name"] = $p->getName();
+              $team["url"] = "";
+               foreach($p->getUsers() as $u)
+              {
+                $user["id"] = $u->getId();
+                $user["username"] = $u->getUsername();
+                $user["url"] = $this->generateUrl('profile', array("username" => $u->getUsername()));
+                $team["users"][] = $user;
+              } 
+
+           }
+           $arrayResponse[] = $team;
+       }
+
+       $response = new JsonResponse();
+       return $response->setData($arrayResponse);
+    }
+
 
     private function getSerializer()
     {

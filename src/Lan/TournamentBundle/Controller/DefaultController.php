@@ -101,7 +101,11 @@ class DefaultController extends Controller
         $tournament =  $em->getRepository("LanTournamentBundle:Tournament")->findOneById($idTournament);
         $session = $this->container->get('session');
         if(!$tournament) throw $this->createNotFoundException('Le tournoi n\'existe pas');
-
+        if(!$tournament->getInscription())
+        {
+            $session->getFlashBag()->add('warning', 'Ce tournoi a ses inscriptions fermées, vous ne pouvez plus vous désinscrire.');
+            return $this->redirect($this->generateUrl('lan_tournament_default_show', array("id" => $id)));
+        }
         $team = $em->getRepository("LanTournamentBundle:Team")->findOneById($idTeam);
         if(!$team) throw $this->createNotFoundException('L\'équipe n\'existe pas');
 
@@ -146,7 +150,12 @@ class DefaultController extends Controller
         
         $tournament =  $em->getRepository("LanTournamentBundle:Tournament")->findOneById($id);
         if(!$tournament) throw $this->createNotFoundException('Le tournoi n\'existe pas');
-
+        if(!$tournament->getInscription())
+        {
+            $session->getFlashBag()->add('warning', 'Ce tournoi a ses inscriptions fermées, vous ne pouvez plus vous désinscrire.');
+            return $this->redirect($this->generateUrl('lan_tournament_default_show', array("id" => $id)));
+        }
+        
         if(!$tournament->getInscription())
         {
             $session->getFlashBag()->add('warning', 'Ce tournoi a ses inscriptions fermées');
