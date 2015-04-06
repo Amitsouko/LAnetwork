@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Team
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Lan\TournamentBundle\Entity\TeamRepository")
  */
 class Team implements ParticipantInterface
 {

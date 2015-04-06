@@ -20,12 +20,46 @@
             {# INSCRIPTION PART #}
             {% if tournament.inscription %}
 
+
+
                 {% if not app.user %}
                     <span>Connectez-vous pour vous inscrire au tournoi</span>
-                {% elseif app.user.personalTeam in tournament.participants  %}
-                    <span>Vous êtes inscrit à ce tournoi - <a href="{{ path("lan_tournament_default_unsubscribe", {id:tournament.id}) }}">se désinscrire</a></span>
+
                 {% else %}
-                    <a href="{{ path("lan_tournament_default_subscribe", {id:tournament.id}) }}">S'inscrire à l'event</a>
+
+                    {% if tournament.type == 0 %}{# personal team #}
+
+                        {% if app.user.personalTeam in tournament.participants  %}
+                            <span>Vous êtes inscrit à ce tournoi - <a href="{{ path("lan_tournament_default_unsubscribe", {id:tournament.id}) }}">se désinscrire</a></span>
+                        {% else %}
+                            <a href="{{ path("lan_tournament_default_subscribe", {id:tournament.id}) }}">S'inscrire à l'event</a>
+                        {% endif %}
+
+                    {% elseif tournament.type == 1 %}
+                    Inscrire l'équipe : 
+                        <form method="post" action="{{ path("lan_tournament_default_teamsubscribe") }}">
+                            <select name="team">
+                                {% for team in app.user.teamPlayer %}
+                                <option value="{{ team.id }}">{{ team.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="hidden" name="id_tournament" value="{{ tournament.id }}"/>
+                            <input type="submit" value="Inscrire"/>
+                        </form>
+                    {% else %}{# mixte #}
+                    Inscrire l'équipe : 
+                        <form method="post" action="{{ path("lan_tournament_default_teamsubscribe") }}">
+                            <select name="team">
+                                <option value="personalTeam">En tant que joueur</option>
+                                {% for team in app.user.teamMod %}
+                                <option value="{{ team.id }}">{{ team.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="hidden" name="id_tournament" value="{{ tournament.id }}"/>
+                            <input type="submit" value="Inscrire"/>
+                        </form>
+                    {% endif %}{# endiftype #}
+
                 {% endif %}
 
             {% else %}
@@ -33,6 +67,10 @@
             {% endif %}
 
             {# END INSCRIPTION PART #}
+            </div>
+
+            <div class="whiteBox">
+                {% render path("lan_tournament_default_getlink", {id: tournament.id}) %}
             </div>
         </div>
     </div>

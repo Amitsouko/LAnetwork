@@ -1,0 +1,16 @@
+<ul>
+    {% for t in teams %}
+    
+    <li>{{ t.name }}
+
+
+
+        {% if t.personalUser  %}
+           <a href="{{ path("lan_tournament_default_unsubscribe", {id:tournamentId}) }}">Se désinscrire</a>
+        {% else %}
+            <a href="{{ path("lan_tournament_default_teamunsubscribe", {idTournament: tournamentId, idTeam: t.id}) }}">désinscrire</a>
+        {% endif %}
+
+    </li>
+    {% endfor %}
+</ul>
