@@ -68,10 +68,11 @@
 
             {# END INSCRIPTION PART #}
             </div>
-
+            {% if app.user %}
             <div class="whiteBox">
                 {% render path("lan_tournament_default_getlink", {id: tournament.id}) %}
             </div>
+            {% endif %}
         </div>
     </div>
 </div>
