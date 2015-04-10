@@ -97,7 +97,7 @@ class DashboardController extends Controller
         $this->em->persist($this->tournament);
         $this->em->flush();
 
-        return array("tournamen" => $this->tournament);
+        return array("tournament" => $this->tournament);
     }
 
 }

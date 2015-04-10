@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
 class ApiController extends Controller
 {
     /**
-     * @Route("/{id}/users")
+     * @Route("/{id}/users", options={"expose"=true})
      * @Template()
      */
     public function getUsersAction($id)
@@ -51,7 +51,7 @@ class ApiController extends Controller
     }
 
     /**
-     * @Route("/{id}/teams")
+     * @Route("/{id}/teams",options={"expose"=true})
      * @Template()
      */
     public function getTeamsAction($id)

@@ -21,9 +21,15 @@
 
 
 {% block bottomjs %}
-
+<script type="text/javascript">
+    var _id = {{ tournament.id }};
+</script>
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 {% javascripts
     '@LanCoreBundle/Resources/public/js/jquery-ui.min.js'
+    '@LanTournamentBundle/Resources/public/js/tournament.js'
+    '@LanTournamentBundle/Resources/public/js/generate.js'
  %}
 <script src="{{ asset_url }}"></script>
 {% endjavascripts %}
